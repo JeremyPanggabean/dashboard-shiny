@@ -34,7 +34,7 @@ RUN R -e "install.packages(c( \
 
 # Hapus aplikasi default dan salin aplikasi kita
 RUN rm -rf /srv/shiny-server/*
-COPY paste.txt /srv/shiny-server/app.R
+COPY app.R /srv/shiny-server/
 
 # Konfigurasi shiny-server untuk Railway
 RUN echo "run_as shiny; \
@@ -51,7 +51,7 @@ server { \
 RUN chown -R shiny:shiny /srv/shiny-server && \
     chown -R shiny:shiny /var/log/shiny-server
 
-# Expose port untuk Railway
+# Expose port
 EXPOSE 3838
 
 # Start shiny-server
